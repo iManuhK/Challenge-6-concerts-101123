@@ -1,8 +1,32 @@
 class Band:
+    all_bands = []
     def __init__(self, name, hometown):
         self.name = name
         self.hometown = hometown
 
+
+    @property
+    def name(self):
+        return self._name
+    
+    @name.setter
+    def name(self, value):
+        if isinstance(value, str) and len(value) > 0:
+            self._name = value
+        else:
+            raise TypeError("Name must be of String type")
+        
+    @property
+    def hometown(self):
+        return self._hometown
+    
+    @hometown.setter
+    def hometown(self, value):
+        if isinstance(value, str) and len(value) > 0:
+            self._hometown = value
+        else:
+            raise TypeError("Hometown is a non-empty string")
+        
     def concerts(self):
         pass
 
