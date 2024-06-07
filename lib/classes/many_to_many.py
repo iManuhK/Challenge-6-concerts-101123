@@ -17,6 +17,7 @@ class Band:
 
 
 class Concert:
+    all_concerts = []
     def __init__(self, date, band, venue):
         self.date = date
         self.band = band
