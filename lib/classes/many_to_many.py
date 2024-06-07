@@ -60,15 +60,18 @@ class Concert:
     @property
     def venue(self):
         return self._venue
+    
     @venue.setter
     def venue(self,value):
         if isinstance(value, Venue):
             self._venue = value
         else:
             raise TypeError("venue should be of class Venue")
+        
     @property
     def band(self):
         return self._band
+    
     @band.setter
     def band(self,value):
         if isinstance(value, Band):
@@ -76,7 +79,6 @@ class Concert:
         else:
             raise TypeError("Band should be of class Band")
             
-
     def hometown_show(self):
         pass
 
@@ -91,8 +93,30 @@ class Venue:
         self.city = city
         Venue.all_venues.append(self)
 
+    @property
+    def name(self):
+        return self._name
+    
+    @name.setter
+    def name(self, value):
+        if isinstance(value, str) and len(value) > 0:
+            self._name = value
+        else:
+            print("Input non-empty strings only")
+
+    @property
+    def city(self):
+        return self._city
+    
+    @city.setter
+    def city(self, value):
+        if isinstance(value, str) and len(value) > 0:
+            self._city = value
+        else:
+            print("Input non-empty strings only")
+    
     def concerts(self):
-        pass
+        return Concert.all_concerts
 
     def bands(self):
-        pass
+        return Band.all_bands
