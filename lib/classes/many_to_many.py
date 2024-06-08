@@ -46,6 +46,7 @@ class Concert:
         self.date = date
         self.band = band
         self.venue = venue
+        Concert.all_concerts.append(self)
 
     @property
     def date(self):
@@ -114,6 +115,10 @@ class Venue:
             self._city = value
         else:
             print("Input non-empty strings only")
+
+    @classmethod
+    def all(cls):
+        return cls.all_venues
     
     def concerts(self):
         return Concert.all_concerts
