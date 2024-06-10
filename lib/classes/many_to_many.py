@@ -146,10 +146,3 @@ class Venue:
             f"Hello {concert.venue.city}!!!!! We are {self.name} and we're from {self.hometown}"
             for concert in self.concerts()
         ]
-
-    def hometown_show(self):
-        return self.band.hometown == self.venue.city
-
-    def introduction(self):
-        return f"Hello {self.venue.city}!!!!! We are {self.band.name} and we're from {self.band.hometown}"
-
