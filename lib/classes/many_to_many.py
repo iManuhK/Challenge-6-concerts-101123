@@ -37,7 +37,6 @@ class Band:
 
     def play_in_venue(self, venue, date):
         concert = Concert(date=date, band=self, venue=venue)
-        self.concerts_for_band.append(concert)
         return concert
 
     def all_introductions(self):
@@ -55,6 +54,7 @@ class Concert:
         self.band = band
         self.venue = venue
         Concert.all.append(self)
+        band.concerts_for_band.append(self)
 
     @property
     def date(self):
@@ -95,10 +95,6 @@ class Concert:
     def introduction(self):
         return f"Hello {self.venue.city}!!!!! We are {self.band.name} and we're from {self.band.hometown}"
 
-    @classmethod
-    def all_concerts(cls):
-        return cls.all
-
 
 class Venue:
     all_venues = []
@@ -107,6 +103,7 @@ class Venue:
         self.name = name
         self.city = city
         Venue.all_venues.append(self)
+
 
     @property
     def name(self):
@@ -135,3 +132,24 @@ class Venue:
 
     def bands(self):
         return list(set(concert.band for concert in self.concerts()))
+
+
+    def venues(self):
+        return list(set(concert.venue for concert in self.concerts()))
+
+    def play_in_venue(self, venue, date):
+        concert = Concert(date=date, band=self, venue=venue)
+        return concert
+
+    def all_introductions(self):
+        return [
+            f"Hello {concert.venue.city}!!!!! We are {self.name} and we're from {self.hometown}"
+            for concert in self.concerts()
+        ]
+
+    def hometown_show(self):
+        return self.band.hometown == self.venue.city
+
+    def introduction(self):
+        return f"Hello {self.venue.city}!!!!! We are {self.band.name} and we're from {self.band.hometown}"
+
