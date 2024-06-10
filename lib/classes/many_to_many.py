@@ -140,9 +140,3 @@ class Venue:
     def play_in_venue(self, venue, date):
         concert = Concert(date=date, band=self, venue=venue)
         return concert
-
-    def all_introductions(self):
-        return [
-            f"Hello {concert.venue.city}!!!!! We are {self.name} and we're from {self.hometown}"
-            for concert in self.concerts()
-        ]
